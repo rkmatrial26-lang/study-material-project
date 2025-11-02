@@ -1,0 +1,28 @@
+/* Sits on top of the content */
+#loader-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(17, 24, 39, 0.8); /* bg-gray-900 with opacity */
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The spinning animation */
+.loader {
+    border: 5px solid #4b5563; /* border-gray-600 */
+    border-top: 5px solid #3b82f6; /* border-blue-500 */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

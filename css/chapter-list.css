@@ -1,0 +1,90 @@
+/*
+ * NEW STYLES FOR THE CHAPTER LIST
+ */
+
+/* Animation for the list items */
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Base style for the chapter list item */
+.chapter-item {
+    background-color: #1f2937; /* bg-gray-800 */
+    border-radius: 0.75rem; /* rounded-xl */
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.75rem; /* space-y-3 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    
+    /* Animation setup */
+    opacity: 0; /* Start hidden */
+    animation: slideUpFadeIn 0.5s ease-out forwards;
+
+    /* Transition for hover */
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.chapter-item:hover {
+    background-color: #374151; /* bg-gray-700 */
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* * ===================================
+ * === THIS IS THE UPDATED SECTION ===
+ * ===================================
+ */
+.chapter-number-box {
+    flex-shrink: 0; /* Don't shrink */
+    width: 3rem; /* 48px - Was 2.75rem */
+    height: 3rem; /* 48px - Was 2.75rem */
+    border-radius: 9999px; /* rounded-full */
+    background-color: #3b82f6; /* bg-blue-500 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900; /* Bolder - Was 700 */
+    color: #ffffff; /* text-white */
+    font-size: 1.25rem; /* Bigger - Was 1rem */
+    margin-right: 1rem; /* mr-4 */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+/* =================================== */
+
+
+/* Styles for the text content */
+.chapter-text-content {
+    flex-grow: 1; /* Take up remaining space */
+    min-width: 0; /* Fix for flexbox text overflow */
+}
+
+.chapter-title {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #f3f4f6; /* text-gray-100 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chapter-subtitle {
+    font-size: 0.875rem; /* text-sm */
+    color: #9ca3af; /* text-gray-400 */
+}
+
+/* Style for the chevron icon */
+.chapter-chevron {
+    flex-shrink: 0;
+    color: #6b7280; /* text-gray-500 */
+    font-size: 1.25rem;
+    margin-left: 1rem; /* ml-4 */
+}

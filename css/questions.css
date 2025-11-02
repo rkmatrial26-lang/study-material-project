@@ -1,0 +1,227 @@
+/*
+* This file replaces the accordion CSS
+* with styles for a "one-question-at-a-time" slider.
+*
+* UPDATED to fix:
+* 1. Images not displaying (CSS reset order was wrong)
+* 2. Nav buttons are now back inside the page flow (no position:fixed)
+*/
+
+:root {
+    --qa-bg: #1f2937; /* bg-gray-800 */
+    --qa-border: #374151; /* bg-gray-700 */
+    --qa-text-primary: #e5e7eb; /* text-gray-300 */
+    --qa-text-secondary: #9ca3af; /* text-gray-400 */
+    --qa-accent-blue: #3b82f6; /* text-blue-500 */
+    --qa-accent-green: #22c55e; /* green-500 */
+    --qa-accent-green-dark: #16a34a; /* green-700 */
+}
+
+/* --- Progress Bar --- */
+#progress-bar-container {
+    background-color: var(--qa-border);
+    border-radius: 99px;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+#progress-bar {
+    background-color: var(--qa-accent-blue);
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.3s ease-in-out;
+}
+#progress-counter {
+    color: var(--qa-text-secondary);
+    font-weight: 600;
+}
+
+/* --- Question Slide --- */
+.qa-slide {
+    display: none; /* Hidden by default, JS shows the active one */
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Title of the main group (e.g. "Q.1 ...") */
+.main-question-title {
+    background-color: var(--qa-bg);
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--qa-accent-blue);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+.main-question-title h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--qa-text-primary);
+}
+
+/* Style for the Question & Answer blocks */
+.qa-part {
+    background-color: var(--qa-bg);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid var(--qa-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    color: var(--qa-text-primary);
+    margin-bottom: 1rem; /* <-- This was already here, but moved */
+}
+
+.question-part {
+    border-left: 4px solid var(--qa-accent-blue);
+    margin-bottom: 1.25rem; /* Space between question and 'Show Answer' button */
+}
+.answer-part {
+    border-left: 4px solid var(--qa-accent-green);
+    color: var(--qa-text-secondary);
+    background-color: #1a222f; /* Slightly darker */
+}
+
+/* --- Button Styles --- */
+
+/* Button to show answer - NEW STYLE */
+.btn-show-answer {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--qa-accent-green); /* Green like the answer */
+    color: white; /* White text */
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 700; /* Bolder */
+    margin-bottom: 1rem;
+    transition: all 0.2s ease; /* Transition all */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+.btn-show-answer:hover {
+    background-color: var(--qa-accent-green-dark); /* Darker green */
+    transform: translateY(-2px); /* 'Pop' effect */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* Bigger shadow */
+}
+
+/* Navigation buttons (Prev / Next) */
+.qa-nav-buttons {
+    display: flex;
+    /* justify-content: space-between; <-- THIS IS REMOVED */
+    margin-top: 2rem;
+    border-top: 1px solid var(--qa-border);
+    padding-top: 1.5rem;
+}
+
+/* --- THIS FAULTY RULE IS REMOVED --- */
+/*
+.btn-nav:first-child:last-child {
+    margin-left: auto;
+}
+*/
+
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background-color: var(--qa-border);
+    color: var(--qa-text-secondary);
+}
+.btn-nav:hover {
+    background-color: #4b5568;
+    color: var(--qa-text-primary);
+}
+.btn-nav-next {
+    background-color: var(--qa-accent-blue);
+    color: white;
+    margin-left: auto; /* <-- THIS IS THE FIX */
+}
+.btn-nav-next:hover {
+    background-color: #2563eb; /* blue-600 */
+}
+
+/* --- General TinyMCE Content Styles --- */
+.content-wrapper {
+    line-height: 1.7;
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.content-wrapper p:last-child {
+    margin-bottom: 0;
+}
+.content-wrapper * {
+    all: revert;
+    color: inherit;
+    font-family: inherit;
+}
+.content-wrapper img {
+    max-width: 100%;
+    height: auto !important;
+    border-radius: 8px;
+    margin: 1rem 0;
+    display: block;
+    border: 2px solid var(--qa-border);
+}
+.content-wrapper h1, .content-wrapper h2, .content-wrapper h3, .content-wrapper h4 {
+    font-weight: 600;
+    color: var(--qa-text-primary);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+.content-wrapper strong {
+    font-weight: 600;
+    color: var(--qa-text-primary);
+}
+.content-wrapper a {
+    color: var(--qa-accent-blue);
+    text-decoration: underline;
+}
+.content-wrapper ul,
+.content-wrapper ol {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+}
+.content-wrapper table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+.table-container { overflow-x: auto; }
+.content-wrapper th,
+.content-wrapper td {
+    border: 1px solid var(--qa-border);
+    padding: 0.75em;
+    text-align: left;
+}
+.content-wrapper th {
+    background-color: var(--qa-bg);
+    color: var(--qa-text-primary);
+}
+
+/* --- NEW Q&A Labels --- */
+.qa-label {
+    display: block;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem; /* 8px */
+    color: var(--qa-text-secondary);
+}
+
+.answer-label {
+    color: var(--qa-accent-green);
+    margin-bottom: 1rem; /* Add space between label and answer content */
+    border-bottom: 1px solid var(--qa-border);
+    padding-bottom: 0.75rem;
+}
